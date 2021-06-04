@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+//enter spot in our SPA - index tsx
 ReactDOM.render(
   <React.StrictMode>
     <App />
