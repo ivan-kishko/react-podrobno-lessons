@@ -44,3 +44,9 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+## IMPORTANT
+
+In order to both react app and storybook work I had to change dependency inside node_modules/@storybook/builder-webpack4/package.json 
+on "babel-loader" from "^8.2.2" to "^8.1.0". While this is not a very good decision, the issue is still persists and this is a kind of a workaround.
+more information you can find at https://github.com/storybookjs/storybook/issues/13108 and https://github.com/storybookjs/storybook/issues/5183
