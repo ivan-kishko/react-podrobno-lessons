@@ -4,8 +4,8 @@ type OnOffPropsType = {
     defaultOn?: boolean
 }
 
-export function OnOff(props: OnOffPropsType) {
-
+function SecretOnOff(props: OnOffPropsType) {
+    console.log('on off')
     let[on, setOn] = useState(props.defaultOn ? props.defaultOn : false); // hook 'useState' with initial value
 
     const onStyle = {
@@ -43,3 +43,5 @@ export function OnOff(props: OnOffPropsType) {
         </div>
     )
 }
+
+export const OnOff = React.memo(SecretOnOff)

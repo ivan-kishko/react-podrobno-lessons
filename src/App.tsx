@@ -5,7 +5,8 @@ import {Rating, RatingValueType} from "./components/Rating/Rating";
 import {OnOff} from "./components/OnOff/OnOff";
 import {SelfControlledAccordion} from "./components/SelfControlledAccordion/SelfControlledAccordion";
 import {SelfControlledRating} from "./components/SelfControlledRating/SelfControlledRating";
-import SelfControlledOnOff from "./components/SelfControlledOnOff/SelfControlledOnOff";
+import {SelfControlledOnOff} from "./components/SelfControlledOnOff/SelfControlledOnOff";
+
 
 //function declaration is below, function expression is an arrow function
 function App() {
@@ -20,13 +21,12 @@ function App() {
     return (
         <div className="App">
             <OnOff/>
-            <OnOff/>
-            {/*<SelfControlledAccordion titleValue={'Menu'}/>*/}
-            {/*<SelfControlledAccordion titleValue={'Users'}/>*/}
+            <SelfControlledOnOff onChange={setOn} on={on}/>
             <SelfControlledRating/>
             <Rating value={ratingValue} onClick={setRatingValue}/>
+            {/*<SelfControlledAccordion titleValue={'Menu'}/>*/}
+            {/*<SelfControlledAccordion titleValue={'Users'}/>*/}
             {/*<Accordion titleValue={'Menu'} onClick={setCollapsed} collapsed={collapsed}/>*/}
-            <SelfControlledOnOff onChange={setOn} on={on}/>
         </div>
     );
 }

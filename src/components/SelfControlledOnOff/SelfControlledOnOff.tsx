@@ -5,7 +5,8 @@ type SelfControlledOnOffPropsType = {
     onChange: (on: boolean) => void
 }
 
-function SelfControlledOnOff(props: SelfControlledOnOffPropsType) {
+export function SecretSelfControlledOnOff(props: SelfControlledOnOffPropsType) {
+    console.log('sc on off')
     const onStyle = {
         width: '30px',
         height: '20px',
@@ -42,4 +43,4 @@ function SelfControlledOnOff(props: SelfControlledOnOffPropsType) {
     )
 }
 
-export default SelfControlledOnOff;
+export const SelfControlledOnOff = React.memo(SecretSelfControlledOnOff);

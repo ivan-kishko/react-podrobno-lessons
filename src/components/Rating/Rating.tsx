@@ -7,8 +7,8 @@ type RatingPropsType = {
     onClick: (value: RatingValueType) => void
 }
 
-export function Rating(props: RatingPropsType) {
-    console.log('SelfControlledRating rendering')
+export function SecretRating(props: RatingPropsType) {
+    console.log('Rating rendering')
 
     return (
         <div>
@@ -31,3 +31,5 @@ function Star(props: StarPropsType) {
     return <span onClick={ () => {props.onClick(props.rating)} }>{ props.selected ? <b>star </b> : 'star ' }</span>
     console.log('Star rendering')
 }
+
+export const Rating = React.memo(SecretRating)

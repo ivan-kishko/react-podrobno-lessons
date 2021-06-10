@@ -5,7 +5,7 @@ type SelfControlledRatingPropsType = {
     defaultRating?: RatingValueType
 }
 
-export function SelfControlledRating(props: SelfControlledRatingPropsType) {
+function SecretSelfControlledRating(props: SelfControlledRatingPropsType) {
     console.log('SelfControlledRating rendering');
     let [starRating, setStarRating] = useState(props.defaultRating ? props.defaultRating : 0);
 
@@ -32,3 +32,5 @@ function Star(props: StarPropsType) {
     </span>
     console.log('Star rendering')
 }
+
+export const SelfControlledRating = React.memo(SecretSelfControlledRating)

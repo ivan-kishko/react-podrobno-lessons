@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { action } from '@storybook/addon-actions';
-import SelfControlledOnOff from "./SelfControlledOnOff";
+import {SelfControlledOnOff} from "./SelfControlledOnOff";
 
 export default {
     title: 'SelfControlledOnOff',
