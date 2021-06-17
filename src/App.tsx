@@ -17,16 +17,24 @@ function App() {
     let [ratingValue, setRatingValue] = useState<RatingValueType>(0)
     let [collapsed, setCollapsed] = useState<boolean>(false)
     let [on, setOn] = useState(false); // hook 'useState' with initial value
+    const items = [
+        {title: 'ivan', value: 1},
+        {title: 'jules', value: 2},
+        {title: 'gwen', value: 3},
+        {title: 'mario', value: 4}
+    ]
 
     return (
         <div className="App">
             <OnOff/>
             <SelfControlledOnOff onChange={setOn} on={on}/>
-            <SelfControlledRating/>
+
             <Rating value={ratingValue} onClick={setRatingValue}/>
-            {/*<SelfControlledAccordion titleValue={'Menu'}/>*/}
-            {/*<SelfControlledAccordion titleValue={'Users'}/>*/}
-            {/*<Accordion titleValue={'Menu'} onClick={setCollapsed} collapsed={collapsed}/>*/}
+            <SelfControlledRating/>
+
+            <Accordion titleValue={'Menu'} onChange={setCollapsed} onClick={setCollapsed} collapsed={collapsed} items={items}/>
+            <SelfControlledAccordion titleValue={'Menu'}/>
+            <SelfControlledAccordion titleValue={'Users'}/>
         </div>
     );
 }

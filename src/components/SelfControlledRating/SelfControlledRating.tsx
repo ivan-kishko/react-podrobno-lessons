@@ -27,10 +27,11 @@ type StarPropsType = {
 }
 
 function Star(props: StarPropsType) {
+    console.log('Star rendering')
     return <span onClick={() => props.setStarRating(props.rating)}>
         { props.selected ? <b>star </b> : 'star ' }
     </span>
-    console.log('Star rendering')
+
 }
 
 export const SelfControlledRating = React.memo(SecretSelfControlledRating)
