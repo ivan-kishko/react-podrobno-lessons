@@ -1,9 +1,10 @@
-import React, {useMemo, useState} from 'react';
+import React, {useCallback, useMemo, useState} from 'react';
 
 export default {
     title: 'useMemo'
 }
 
+//useMemo + Reactmemo
 export const DifficultCountingExample = () => {
 
     const [a, setA] = useState<number>(5)
@@ -78,5 +79,54 @@ export const HelpsToReactMemo = () => {
         hook useMemo to prevent such behaviour (re-rendering). Hook useMemo gets as params function
         that doing something and dependencies(in other words when to call a function -> if those
         dependencies has been changed*/}
+    </>
+}
+
+//useCallback
+const BooksSecret = (props: { addBook: () => void }) => {
+    console.log('booksSecret')
+    return (
+        <div>
+            <button onClick={() => props.addBook()}>add book</button>
+        </div>
+    )
+}
+
+const Books = React.memo(BooksSecret) // makes component not to rerender if it did not change
+
+export const LikeUseCallback = () => {
+    console.log('LikeUseCallback')
+    const [count, setCount] = useState(0)
+    const [books, setBooks] = useState(['React', 'JS', 'TS'])
+
+    const addBook = () => {
+        const newBooks = [...books, 'Angular' + new Date().getTime()]
+        setBooks(newBooks)
+    }
+
+    //useMemo hook on a callback
+    const memorizedAddBook = useMemo(() => {
+        return () => {
+            const newBooks = [...books, 'Angular' + new Date().getTime()]
+            setBooks(newBooks)
+        }
+    }, [books])
+
+    //useCallback hook on a callback
+    const memorizedAddBook2 = useCallback(() => {
+        const newBooks = [...books, 'Angular' + new Date().getTime()]
+        setBooks(newBooks)
+    }, [books])
+
+    return <>
+        <button onClick={() => setCount(count + 1)}>+</button>
+        {count}
+        <Books addBook={memorizedAddBook2}/>
+        {/*lexical env - read about it
+        if u have a callback inside props of a child component that uses react memo it still will rerender because
+        every time when parent component renders for child component callback is always a new object - that is why
+        react memo does not work
+        while useMemo have to return a function that u want to memorize, useCallback just have to have callback itself
+        inside its body*/}
     </>
 }
