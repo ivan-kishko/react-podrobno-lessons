@@ -85,3 +85,51 @@ export const SetTimeoutUseEffectExample = () => {
         {fake}
     </>
 }
+
+export const ResetUseEffect = () => {
+    const [counter, setCounter] = useState(1)
+
+    console.log('ResetUseEffectExample rendered with ' + counter)
+
+    useEffect(() => {
+        console.log('Effect occurred ' + counter)
+
+        //return will work not only like componentWillUnmount but as well when dependency changed
+        //also we have to use it so useEffect is not persistent after component is killed
+        return () => {
+            console.log('reset effect ' + counter)
+        }
+    }, [counter])
+
+    return <>
+        Hello counter: {counter}
+        <button onClick={() => {setCounter(counter + 1)}}>+</button>
+    </>
+}
+
+export const KeyTrackerExample = () => {
+    const [text, setText] = useState('')
+
+    console.log('Component rendered with ' + text)
+
+    useEffect(() => {
+        const handler = (e: KeyboardEvent) => {
+            console.log(e.key)
+            //setText((state) => state + e.key)
+            setText(text + e.key)
+        }
+
+        window.addEventListener('keypress', handler)
+        // if we dont want memory leaks we have to exit from useEffect
+        // using return so effect is dead after component is killed
+        return () => {
+            window.removeEventListener('keypress', handler)
+        }
+    }, [text])
+
+    return (
+        <>
+            Typed text: {text}
+        </>
+    )
+}
